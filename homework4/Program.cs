@@ -18,11 +18,12 @@ namespace homework4
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Вывести наибольшее из двух введённых чисел 
+        /// </summary>
+        /// <returns> - </returns>
         static void Task1()
         {
-            //Написать метод, возвращающий наибольшее из двух введённых чисел
-            //Вход: 2 целых числа
-            //Выход -> макс. число
             Console.WriteLine("Упражнение 5.1\n");
 
             Console.WriteLine("Введите первое число");
@@ -31,13 +32,15 @@ namespace homework4
             int secondNum = EnterNumber();
 
             Max(firstNum, secondNum);
-
         }
+
+        /// <summary>
+        /// Поменять местами 2 числа при помощи ref  
+        /// </summary>
+        /// <returns> - </returns>
         static void Task2()
         {
-            //Поменять 2 числа местами, используя ref
-            //Ввод: 2 числа
-            //Вывод -> 2 числа :)
+            
             Console.WriteLine("Упражнение 5.2\n");
 
             Console.WriteLine("Введите первое число");
@@ -48,11 +51,14 @@ namespace homework4
             Change(ref firstNumb, ref secondNumb);
             Console.WriteLine($"{firstNumb} <_> {secondNumb}");
         }
+
+        /// <summary>
+        /// Посчитать факториал числа по его номеру
+        /// </summary>
+        /// <returns> - </returns>
         static void Task3()
         {
-            //Посчитать факториал числа
-            //Ввод: число
-            //Вывод -> факториал числа
+            
             Console.WriteLine("Упражнение 5.3\n");
 
             Console.WriteLine("Введите натуральное число, факториал которого нужно посчитать");
@@ -63,11 +69,13 @@ namespace homework4
                 Console.WriteLine($"Факториал числа {number} = {answer}");
             }
         }
+
+        /// <summary>
+        /// Посчитать факториал числа при помощи рекурсии
+        /// </summary>
+        /// <returns> - </returns>
         static void Task4()
         {
-            //Посчитать факториал числа через рекурсию
-            //Ввод: число
-            //Вывод -> факториал числа
             Console.WriteLine("Упражнение 5.4\n");
 
             Console.WriteLine("Введите число, факториал которого нужно вычислить");
@@ -79,11 +87,13 @@ namespace homework4
             }
             
         }
+
+        /// <summary>
+        /// Посчитать НОД 2 или 3 чисел 
+        /// </summary>
+        /// <returns> - </returns>
         static void Task5()
         {
-            //Посчитать НОД чисел по алгоритму Евклида
-            //Ввод: количество чисел (2, 3), сами числа
-            //Вывод -> НОД
             Console.WriteLine("Домашнее задание 5.1\n");
 
             Console.WriteLine("НОД скольких чисел будем считать? 2 или 3? Введите в консоль");
@@ -124,11 +134,14 @@ namespace homework4
                 Console.WriteLine(NOD(firstNum, secondNum));
             }
         }
+
+        /// <summary>
+        /// Вывести число ряда Фибоначчи по его номеру
+        /// </summary>
+        /// <returns> - </returns>
         static void Task6()
         {
-            ///Вывести число Фибоначчи по номеру
-            ///Ввод: порядковый номер числа Фибоначчи
-            ///Вывод: само число
+            
             Console.WriteLine("Домашнее задание 5.2\n");
 
             Console.WriteLine("Введите номер искомого числа Фибоначчи");
@@ -162,6 +175,11 @@ namespace homework4
             return number;
         }
 
+        /// <summary>
+        /// Считывает строку символов с консоли и преобразует ее к неотрицательному целому числу. Ввод продолжается до тех пор, 
+        /// пока пользователь не введет число.
+        /// </summary>
+        /// <returns>Число типа int</returns>
         static int EnterPosNumber()
         {
             bool flag = true;
@@ -169,7 +187,7 @@ namespace homework4
             do
             {
                 bool isNumber = int.TryParse(Console.ReadLine(), out number);
-                if (isNumber & number >= 0)
+                if (isNumber && (number >= 0))
                 {
                     flag = false;
                 }
@@ -183,22 +201,34 @@ namespace homework4
             return number;
         }
 
+        /// <summary>
+        /// К 1 заданию
+        /// Принимает 2 целых числа и выводит максимальное из них
+        /// </summary>
+        /// <returns>Число типа int</returns>
         static void Max(int a, int b)
-        //К 1 заданию
         {
             Console.WriteLine($"Максимальное число равно {Math.Max(a, b)}");
         }
 
+        /// <summary>
+        /// Ко 2 заданию
+        /// Принимает 2 числа и меняет их местами
+        /// </summary>
+        /// <returns> - </returns>
         static void Change(ref double firstNumber, ref double secondNumber)
-        //К 2 заданию
         {
             double dop = firstNumber;
             firstNumber = secondNumber;
             secondNumber = dop;
         }
 
+        /// <summary>
+        /// К 3 заданию
+        /// Считает факториал введённого неотрицательного числа
+        /// </summary>
+        /// <returns>Число типа int</returns>
         static int Factorial(int x)
-        //К 3 заданию
         {
             try
             {
@@ -218,10 +248,13 @@ namespace homework4
             return -1;            
         }
 
+        /// <summary>
+        /// К 4 заданию
+        /// Рекурсивно считает факториал введённого неотрицательного числа
+        /// </summary>
+        /// <returns>Число типа int</returns>
         static int recFactorial(int number)
-        //К 4 заданию
         {
-
             if (number == 1)
             {
                 return 1;
@@ -236,6 +269,11 @@ namespace homework4
             }
         }
 
+        /// <summary>
+        /// К 5 заданию
+        /// Считает НОД 2 введённых натуральных чисел 
+        /// </summary>
+        /// <returns>Число типа int</returns>
         static int NOD(int alfa, int beta)
         //К 5 заданию
         {
@@ -251,6 +289,11 @@ namespace homework4
             return beta;
         }
 
+        /// <summary>
+        /// К 5 заданию
+        /// Считает НОД 3 введённых натуральных чисел 
+        /// </summary>
+        /// <returns>Число типа int</returns>
         static int NOD(int alfa, int beta, int gamma)
         //К 5 заданию
         {
@@ -274,7 +317,12 @@ namespace homework4
             }
             return beta;
         }
-
+        
+        /// <summary>
+        /// К 6 заданию
+        /// Считает число ряда Фибоначчи по его номеру
+        /// </summary>
+        /// <returns>Число типа int</returns>
         static int Fibb(int number)
         //К 6 заданию
         {
