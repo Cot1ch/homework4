@@ -244,14 +244,14 @@ namespace Tumakov4
         static void Task4()
         {
             Console.WriteLine("4 задание");
-
+        
             Ded ded1 = new Ded();
             ded1.name = "Игаарь";
-            ded1.phrases = ["Проститутки!", ""];
+            string[] mat = { "Проститутки!", "" };
+            ded1.phrases = mat;
             ded1.level = (Level)0;
-
-            Console.WriteLine($"{ded1.phrases}");
-
+            Console.WriteLine(ded1.Mahach(ded1.phrases, Console.ReadLine().Split()));
+        
         }
         public struct Ded
         {
@@ -259,9 +259,20 @@ namespace Tumakov4
             public int countBruises;
             public string[] phrases;
             public Level level;
-
+        
+            public int Mahach(string[] phrase, params string[] words)
+            {
+                foreach (string word in words)
+                {
+                    if (Array.IndexOf(phrase, word) != -1)
+                    {
+                        countBruises++;
+                    }
+                }
+                return countBruises;
+            }
         }
         public enum Level
-        { слабый, средний, сильный, маразм, трёхэтажный}
+        { слабый, средний, сильный, маразм, трёхэтажный }
     }
 }
