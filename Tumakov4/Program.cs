@@ -15,11 +15,14 @@ namespace Tumakov4
             Console.WriteLine("Нажмине что-нибудь для закрытия окна");
             Console.ReadKey();
         }
+
+        /// <summary>
+        /// Создать массив из 20 случайных чисел -> Пользователь вводит 2 числа из этого массива -> Меняем их в массиве местами.
+        /// </summary>
+        /// <returns> - </returns>
         static void Task1()
         {
-            //
-            //
-            //
+            
             Console.WriteLine("1 задание\n");
 
             Random random = new Random();
@@ -59,7 +62,7 @@ namespace Tumakov4
             array[firstIndex] = secondNum;
             array[secondIndex] = firstNum;
 
-            ///Вывод
+            //Вывод
             Console.WriteLine("Итоговый массив:");
             for (int i = 0; i < 20; i++)
             {
@@ -68,11 +71,12 @@ namespace Tumakov4
 
         }
 
+        /// <summary>
+        /// Вычислить сумму, произведение и среднее арифметическое массива, используя ref и out.
+        /// </summary>
+        /// <returns> - </returns>
         static void Task2()
         {
-            //
-            //
-            //
             Console.WriteLine("\n2 задание\n");
 
             double[] array = EnterArray();
@@ -88,13 +92,14 @@ namespace Tumakov4
             Console.WriteLine($"Сумма массива равна {mean}");
         }
 
-        
-
+        /// <summary>
+        /// Если пользователь вводит цифры от 0 до 9 - вывести эти числа, нарисованные символом #.
+        /// Если пользователь вводит другое число - вывести ошибку и поменять цвет консоли.
+        /// Если пользователь ввёл не число - создать исключение.
+        /// </summary>
+        /// <returns> - </returns>
         static void Task3()
         {
-            //
-            //САЛАВАТ Задержка и заливка консоли тупит
-            //
             Console.WriteLine("3 задание\n");
 
             Console.WriteLine("Консоль ваша. Вводите числа со спокойной душой.\nДля выхода введите exit или закрыть");
@@ -116,55 +121,12 @@ namespace Tumakov4
             Console.WriteLine("Программа окончена");
         }
 
-        static void DrawNumber(string inputS)
-        {//3
-            if (int.TryParse(inputS, out int number))
-            {
-                switch (number)
-                {
-                    case 0:
-                        Console.WriteLine("###\n# #\n# #\n# #\n###");
-                        break;
-                    case 1:
-                        Console.WriteLine("  #\n  #\n  #\n  #\n  #");
-                        break;
-                    case 2:
-                        Console.WriteLine("###\n  #\n###\n#  \n###");
-                        break;
-                    case 3:
-                        Console.WriteLine("###\n  #\n###\n  #\n###");
-                        break;
-                    case 4:
-                        Console.WriteLine("# #\n# #\n###\n  #\n  #");
-                        break;
-                    case 5:
-                        Console.WriteLine("###\n#  \n###\n  #\n###");
-                        break;
-                    case 6:
-                        Console.WriteLine("###\n#  \n###\n# #\n###");
-                        break;
-                    case 7:
-                        Console.WriteLine("###\n  #\n  #\n  #\n  #");
-                        break;
-                    case 8:
-                        Console.WriteLine("###\n# #\n###\n# #\n###");
-                        break;
-                    case 9:
-                        Console.WriteLine("###\n# #\n###\n  #\n###");
-                        break;
-                    default:
-                        Console.BackgroundColor = ConsoleColor.Red;
-                        Console.WriteLine("ОШИБКА");
-                        Thread.Sleep(3000);
-                        Console.BackgroundColor = ConsoleColor.Black;
-                        break;
-                }
-            }
-            else
-            {
-                Console.WriteLine("Не число");
-            }
-        }
+        /// <summary>
+        /// Создать структуту Дед и 5 дедов, у которых есть имя, уровень ворчливости, список матерных слов и количество  синяков=0.
+        /// Пользователь вводит имя деда, список слов в махаче. За каждое слово из списка в словарном запасе деда +1 фингал.
+        /// Вывести количество фингалов.
+        /// </summary>
+        /// <returns> - </returns>
         static void Task4()
         {
             Console.WriteLine("4 задание\n");
@@ -235,8 +197,13 @@ namespace Tumakov4
             }
         }
 
+        /// <summary>
+        /// Метод возвращает число, если оно есть в переданном массиве и если оно число.
+        /// Ввод до победного.
+        /// </summary>
+        /// <returns> Число типа int </returns>
         static int EnterNumberFromArray(int[] arr)
-        {//1
+        {
             bool flag = true;
             int number;
             do
@@ -255,8 +222,14 @@ namespace Tumakov4
 
             return number;
         }
+
+        /// <summary>
+        /// Метод считывает массив строк с консоли и переводит его в массив чисел, если это возможно.
+        /// Ввод продолжается до победного.
+        /// </summary>
+        /// <returns> Массив double[] </returns>
         static double[] EnterArray()
-        {//2
+        {
             bool flag = true;
             string[] strNums;
             double[] nums;
@@ -293,8 +266,13 @@ namespace Tumakov4
             return nums;
         }
 
+        /// <summary>
+        /// Ко 2 заданию
+        /// Считает сумму переданного массива
+        /// </summary>
+        /// <returns> Число типа double </returns>
         static double Sum(params double[] arr)
-        {//2
+        {
             double sum = 0;
             foreach (double d in arr)
             {
@@ -304,26 +282,100 @@ namespace Tumakov4
 
         }
 
+        /// <summary>
+        /// Ко 2 заданию
+        /// Считает произведение массива через ref
+        /// </summary>
+        /// <returns> - </returns>
         static void Mul(ref double ans, params double[] arr)
-        {//2
+        {
             foreach (double d in arr)
             {
                 ans *= d;
             }
         }
 
+        /// <summary>
+        /// Ко 2 заданию
+        /// Считает среднее арифметическое массива через out
+        /// </summary>
+        /// <returns> - </returns>
         static void Mean(out double ans, params double[] arr)
-        {//2
+        {
             ans = Sum(arr) / arr.Length;
         }
 
+        /// <summary>
+        /// К 3 заданию.
+        /// Рисует переданную цифру символом #.
+        /// Если число не из [0, 9] - выдает ошибку.
+        /// Если не число - уведомляет об этом.
+        /// </summary>
+        /// <returns> - </returns>
+        static void DrawNumber(string inputS)
+        {
+            if (int.TryParse(inputS, out int number))
+            {
+                switch (number)
+                {
+                    case 0:
+                        Console.WriteLine("###\n# #\n# #\n# #\n###");
+                        break;
+                    case 1:
+                        Console.WriteLine("  #\n  #\n  #\n  #\n  #");
+                        break;
+                    case 2:
+                        Console.WriteLine("###\n  #\n###\n#  \n###");
+                        break;
+                    case 3:
+                        Console.WriteLine("###\n  #\n###\n  #\n###");
+                        break;
+                    case 4:
+                        Console.WriteLine("# #\n# #\n###\n  #\n  #");
+                        break;
+                    case 5:
+                        Console.WriteLine("###\n#  \n###\n  #\n###");
+                        break;
+                    case 6:
+                        Console.WriteLine("###\n#  \n###\n# #\n###");
+                        break;
+                    case 7:
+                        Console.WriteLine("###\n  #\n  #\n  #\n  #");
+                        break;
+                    case 8:
+                        Console.WriteLine("###\n# #\n###\n# #\n###");
+                        break;
+                    case 9:
+                        Console.WriteLine("###\n# #\n###\n  #\n###");
+                        break;
+                    default:
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.WriteLine("ОШИБКА");
+                        Thread.Sleep(3000);
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Не число");
+            }
+        }
+
+        /// <summary>
+        /// Структура Дед.
+        /// </summary>
         public struct Ded
-        {//4
+        {
             public string name;
             public int countBruises;
             public string[] phrases;
             public Level level;
 
+            /// <summary>
+            /// Возвращает количество совпадений в переданных массивах строк
+            /// </summary>
+            /// <returns> Строка string </returns>
             public string Mahach(string[] phrase, params string[] words)
             {
                 foreach (string word in words)
@@ -335,6 +387,11 @@ namespace Tumakov4
                 }
                 return $"Количество синяков после махача = {countBruises}";
             }
+
+            /// <summary>
+            /// Вывод деда
+            /// </summary>
+            /// <returns> - </returns>
             public void Print()
             {
                 Console.WriteLine($"Имя деда: {name}");
@@ -342,6 +399,7 @@ namespace Tumakov4
                 Console.WriteLine($"Синяки: {countBruises}");
             }
         }
+
         public enum Level //4
         { слабый, средний, сильный, маразм, трёхэтажный }
     }
