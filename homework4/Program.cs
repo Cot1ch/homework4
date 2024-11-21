@@ -11,163 +11,211 @@ namespace homework4
             Task2();
             Task3();
             Task4();
-            Task5();
-            Task6();
 
-            Console.WriteLine("Нажмите что-нибудь для выхода");
+            Console.WriteLine("Нажмине что-нибудь для закрытия окна");
             Console.ReadKey();
         }
 
         /// <summary>
-        /// Вывести наибольшее из двух введённых чисел 
+        /// Создать массив из 20 случайных чисел -> Пользователь вводит 2 числа из этого массива -> Меняем их в массиве местами.
         /// </summary>
         /// <returns> - </returns>
         static void Task1()
         {
-            Console.WriteLine("Упражнение 5.1\n");
 
-            Console.WriteLine("Введите первое число");
-            int firstNum = EnterNumber();
-            Console.WriteLine("Введите второе число");
-            int secondNum = EnterNumber();
+            Console.WriteLine("1 задание\n");
 
-            Max(firstNum, secondNum);
+            Random random = new Random();
+            Console.Write("Выберите и введите в консоль 2 числа из массива\nМассив: ");
+
+            int[] array = new int[20];
+            for (int k = 0; k < 20; k++)
+            {
+                array[k] = random.Next(10000);
+                Console.Write(array[k] + " ");
+            }
+            Console.WriteLine("\nВведите первое число");
+
+            int firstNum = EnterNumberFromArray(array);
+
+            int secondNum = -1;
+            bool notEqual = true;
+            do
+            {
+                Console.WriteLine("Введите второе число");
+                int dop = EnterNumberFromArray(array);
+                if (dop == firstNum)
+                {
+                    Console.WriteLine("Вы уже выбрали это число");
+                }
+                else
+                {
+                    secondNum = dop;
+                    notEqual = false;
+                }
+            }
+            while (notEqual);
+
+            int firstIndex = Array.IndexOf(array, firstNum);
+            int secondIndex = Array.IndexOf(array, secondNum);
+
+            array[firstIndex] = secondNum;
+            array[secondIndex] = firstNum;
+
+            //Вывод
+            Console.WriteLine("Итоговый массив:");
+            for (int i = 0; i < 20; i++)
+            {
+                Console.Write(array[i] + " ");
+            }
+
         }
 
         /// <summary>
-        /// Поменять местами 2 числа при помощи ref  
+        /// Вычислить сумму, произведение и среднее арифметическое массива, используя ref и out.
         /// </summary>
         /// <returns> - </returns>
         static void Task2()
         {
-            
-            Console.WriteLine("Упражнение 5.2\n");
+            Console.WriteLine("\n\n2 задание\n");
 
-            Console.WriteLine("Введите первое число");
-            double firstNumb = EnterNumber();
-            Console.WriteLine("Введите второе число");
-            double secondNumb = EnterNumber();
+            double[] array = EnterArray();
 
-            Change(ref firstNumb, ref secondNumb);
-            Console.WriteLine($"{firstNumb} <_> {secondNumb}");
+            Console.WriteLine($"Сумма массива равна {Sum(array)}");
+
+            double answer = 1;
+            Mul(ref answer, array);
+            Console.WriteLine($"Сумма массива равна {answer}");
+
+            double mean = -1;
+            Mean(out mean, array);
+            Console.WriteLine($"Сумма массива равна {mean}");
         }
 
         /// <summary>
-        /// Посчитать факториал числа по его номеру
+        /// Если пользователь вводит цифры от 0 до 9 - вывести эти числа, нарисованные символом #.
+        /// Если пользователь вводит другое число - вывести ошибку и поменять цвет консоли.
+        /// Если пользователь ввёл не число - создать исключение.
         /// </summary>
         /// <returns> - </returns>
         static void Task3()
         {
-            
-            Console.WriteLine("Упражнение 5.3\n");
+            Console.WriteLine("\n3 задание\n");
 
-            Console.WriteLine("Введите натуральное число, факториал которого нужно посчитать");
-            int number = EnterPosNumber();
-            int answer = Factorial(number);
-            if (answer != -1)
+            Console.WriteLine("Консоль ваша. Вводите числа со спокойной душой.\nДля выхода введите exit или закрыть");
+            string input;
+
+            do
             {
-                Console.WriteLine($"Факториал числа {number} = {answer}");
+                input = Console.ReadLine();
+                if (input != "exit" & input != "закрыть")
+                {
+                    DrawNumber(input);
+                }
+                else
+                {
+                    break;
+                }
             }
+            while (true);
+            Console.WriteLine("Программа окончена");
         }
 
         /// <summary>
-        /// Посчитать факториал числа при помощи рекурсии
+        /// Создать структуту Дед и 5 дедов, у которых есть имя, уровень ворчливости, список матерных слов и количество  синяков=0.
+        /// Пользователь вводит имя деда, список слов в махаче. За каждое слово из списка в словарном запасе деда +1 фингал.
+        /// Вывести количество фингалов.
         /// </summary>
         /// <returns> - </returns>
         static void Task4()
         {
-            Console.WriteLine("Упражнение 5.4\n");
+            Console.WriteLine("\n4 задание\n");
 
-            Console.WriteLine("Введите число, факториал которого нужно вычислить");
-            int number = EnterPosNumber();
-            int answer = recFactorial(number);
-            if (answer != -1)
+            Ded ded1 = new Ded();
+            ded1.name = "Игаарь";
+            string[] mat1 = { "проститутки", "гады", "тварь" };
+            ded1.phrases = mat1;
+            ded1.level = (Level)1;
+            ded1.Print();
+
+            Ded ded2 = new Ded();
+            ded2.name = "Вова";
+            string[] mat2 = { "гады", "тварь", "псина", "ну ты это да конечно" };
+            ded2.phrases = mat2;
+            ded2.level = (Level)2;
+            ded2.Print();
+
+            Ded ded3 = new Ded();
+            ded3.name = "Никто не помнит, даже он сам";
+            string[] mat3 = { "раскудрить её в качель", "проститутки" };
+            ded3.phrases = mat3;
+            ded3.level = (Level)0;
+            ded3.Print();
+
+            Ded ded4 = new Ded();
+            ded4.name = "Петя";
+            string[] mat4 = { "гады" };
+            ded4.phrases = mat4;
+            ded4.level = (Level)3;
+            ded4.Print();
+
+            Ded ded5 = new Ded();
+            ded5.name = "Вася";
+            string[] mat5 = { "продажные", "а вот при социализме", "тварь ты поганая", "растудыть его туды", };
+            ded5.phrases = mat5;
+            ded5.level = (Level)4;
+            ded5.Print();
+
+            Console.WriteLine("Введите имя деда");
+            string dedName = Console.ReadLine();
+            string[] names = { "Игаарь", "Вова", "Никто не помнит, даже он сам", "Петя", "Вася" };
+
+            while (Array.IndexOf(names, dedName) == -1)
             {
-                Console.WriteLine($"{answer}");
+                Console.WriteLine("Введите имя деда из списка выше");
+                dedName = Console.ReadLine();
             }
-            
+
+            Console.WriteLine("Введите фразы деда через символ _, пожалуйста");
+            switch (dedName)
+            {
+                case "Игаарь":
+                    Console.WriteLine(ded1.Mahach(ded1.phrases, Console.ReadLine().Split('_')));
+                    break;
+                case "Вова":
+                    Console.WriteLine(ded2.Mahach(ded2.phrases, Console.ReadLine().Split('_')));
+                    break;
+                case "Никто не помнит, даже он сам":
+                    Console.WriteLine(ded3.Mahach(ded3.phrases, Console.ReadLine().Split('_')));
+                    break;
+                case "Петя":
+                    Console.WriteLine(ded4.Mahach(ded4.phrases, Console.ReadLine().Split('_')));
+                    break;
+                case "Вася":
+                    Console.WriteLine(ded5.Mahach(ded5.phrases, Console.ReadLine().Split('_')));
+                    break;
+            }
         }
 
         /// <summary>
-        /// Посчитать НОД 2 или 3 чисел 
+        /// Метод возвращает число, если оно есть в переданном массиве и если оно число.
+        /// Ввод до победного.
         /// </summary>
-        /// <returns> - </returns>
-        static void Task5()
-        {
-            Console.WriteLine("Домашнее задание 5.1\n");
-
-            Console.WriteLine("НОД скольких чисел будем считать? 2 или 3? Введите в консоль");
-
-            bool flag = true;
-            int count = 2;
-
-            do
-            {
-                int counter = EnterNumber();
-                if (counter == 2 || counter == 3)
-                {
-                    count = counter;
-                    flag = false;
-                }
-                else
-                {
-                    Console.WriteLine("2 или 3, пожалуйста");
-                }
-            }
-            while (flag);
-
-            Console.WriteLine("Введите первое натуральное число");
-            int firstNum = EnterPosNumber();
-
-            Console.WriteLine("Введите второе натуральное число");
-            int secondNum = EnterPosNumber();
-
-            if (count == 3)
-            {
-                Console.WriteLine("Введите третье натуральное число");
-                int thirdNum = EnterPosNumber();
-
-                Console.WriteLine(NOD(firstNum, secondNum, thirdNum));
-            }
-            else
-            { // count = 2
-                Console.WriteLine(NOD(firstNum, secondNum));
-            }
-        }
-
-        /// <summary>
-        /// Вывести число ряда Фибоначчи по его номеру
-        /// </summary>
-        /// <returns> - </returns>
-        static void Task6()
-        {
-            
-            Console.WriteLine("Домашнее задание 5.2\n");
-
-            Console.WriteLine("Введите номер искомого числа Фибоначчи");
-            int n_fib = EnterPosNumber();
-            Console.WriteLine(Fibb(n_fib));
-        }
-
-        /// <summary>
-        /// Считывает строку символов с консоли и преобразует ее к целому числу. Ввод продолжается до тех пор, 
-        /// пока пользователь не введет число.
-        /// </summary>
-        /// <returns>Число типа int</returns>
-        static int EnterNumber()
+        /// <returns> Число типа int </returns>
+        static int EnterNumberFromArray(int[] arr)
         {
             bool flag = true;
             int number;
             do
             {
                 bool isNumber = int.TryParse(Console.ReadLine(), out number);
-                if (isNumber)
+                if (isNumber & Array.IndexOf(arr, number) != -1)
                 {
                     flag = false;
                 }
                 else
                 {
-                    Console.WriteLine("Неверный ввод - необходимо ввести целое число");
+                    Console.WriteLine("Неверный ввод - необходимо ввести число из массива");
                 }
             }
             while (flag);
@@ -176,164 +224,183 @@ namespace homework4
         }
 
         /// <summary>
-        /// Считывает строку символов с консоли и преобразует ее к неотрицательному целому числу. 
-        /// Ввод продолжается до тех пор,по ка пользователь не введет число.
+        /// Метод считывает массив строк с консоли и переводит его в массив чисел, если это возможно.
+        /// Ввод продолжается до победного.
         /// </summary>
-        /// <returns>Число типа int</returns>
-        static int EnterPosNumber()
+        /// <returns> Массив double[] </returns>
+        static double[] EnterArray()
         {
             bool flag = true;
-            int number;
+            string[] strNums;
+            double[] nums;
+
             do
             {
-                bool isNumber = int.TryParse(Console.ReadLine(), out number);
-                if (isNumber && (number >= 0))
+                bool secFlag = true;
+                Console.WriteLine("Введите массив чисел через пробел");
+                strNums = Console.ReadLine().Split();
+                nums = new double[strNums.Length];
+
+                for (int i = 0; i < strNums.Length; i++)
                 {
-                    flag = false;
+                    if (int.TryParse(strNums[i], out int number))
+                    {
+                        nums[i] = number;
+                    }
+                    else
+                    {
+                        secFlag = false;
+                        break;
+                    }
+                }
+                if (!secFlag)
+                {
+                    Console.WriteLine("Неверный ввод - нужен массив чисел");
                 }
                 else
                 {
-                    Console.WriteLine("Неверный ввод - необходимо ввести целое неотрицательное число");
+                    flag = false;
                 }
             }
             while (flag);
-
-            return number;
-        }
-
-        /// <summary>
-        /// К 1 заданию
-        /// Принимает 2 целых числа и выводит максимальное из них
-        /// </summary>
-        /// <returns> - </returns>
-        static void Max(int a, int b)
-        {
-            Console.WriteLine($"Максимальное число равно {Math.Max(a, b)}");
+            return nums;
         }
 
         /// <summary>
         /// Ко 2 заданию
-        /// Принимает 2 числа и меняет их местами
+        /// Считает сумму переданного массива
+        /// </summary>
+        /// <returns> Число типа double </returns>
+        static double Sum(params double[] arr)
+        {
+            double sum = 0;
+            foreach (double d in arr)
+            {
+                sum += d;
+            }
+            return sum;
+
+        }
+
+        /// <summary>
+        /// Ко 2 заданию
+        /// Считает произведение массива через ref
         /// </summary>
         /// <returns> - </returns>
-        static void Change(ref double firstNumber, ref double secondNumber)
+        static void Mul(ref double ans, params double[] arr)
         {
-            double dop = firstNumber;
-            firstNumber = secondNumber;
-            secondNumber = dop;
+            foreach (double d in arr)
+            {
+                ans *= d;
+            }
         }
 
         /// <summary>
-        /// К 3 заданию
-        /// Считает факториал введённого неотрицательного числа
+        /// Ко 2 заданию
+        /// Считает среднее арифметическое массива через out
         /// </summary>
-        /// <returns>Число типа int</returns>
-        static int Factorial(int x)
+        /// <returns> - </returns>
+        static void Mean(out double ans, params double[] arr)
         {
-            try
+            ans = Sum(arr) / arr.Length;
+        }
+
+        /// <summary>
+        /// К 3 заданию.
+        /// Рисует переданную цифру символом #.
+        /// Если число не из [0, 9] - выдает ошибку.
+        /// Если не число - уведомляет об этом.
+        /// </summary>
+        /// <returns> - </returns>
+        static void DrawNumber(string inputS)
+        {
+            if (int.TryParse(inputS, out int number))
             {
-                int answer = 1;
-                while (x > 0)
+                switch (number)
                 {
-                    answer = checked(answer * x);
-                    x--;
+                    case 0:
+                        Console.WriteLine("###\n# #\n# #\n# #\n###");
+                        break;
+                    case 1:
+                        Console.WriteLine("  #\n  #\n  #\n  #\n  #");
+                        break;
+                    case 2:
+                        Console.WriteLine("###\n  #\n###\n#  \n###");
+                        break;
+                    case 3:
+                        Console.WriteLine("###\n  #\n###\n  #\n###");
+                        break;
+                    case 4:
+                        Console.WriteLine("# #\n# #\n###\n  #\n  #");
+                        break;
+                    case 5:
+                        Console.WriteLine("###\n#  \n###\n  #\n###");
+                        break;
+                    case 6:
+                        Console.WriteLine("###\n#  \n###\n# #\n###");
+                        break;
+                    case 7:
+                        Console.WriteLine("###\n  #\n  #\n  #\n  #");
+                        break;
+                    case 8:
+                        Console.WriteLine("###\n# #\n###\n# #\n###");
+                        break;
+                    case 9:
+                        Console.WriteLine("###\n# #\n###\n  #\n###");
+                        break;
+                    default:
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.WriteLine("ОШИБКА");
+                        Thread.Sleep(3000);
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        break;
                 }
-
-                return answer;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            return -1;            
-        }
-
-        /// <summary>
-        /// К 4 заданию
-        /// Рекурсивно считает факториал введённого неотрицательного числа
-        /// </summary>
-        /// <returns>Число типа int</returns>
-        static int recFactorial(int number)
-        {
-            if (number == 1)
-            {
-                return 1;
-            }
-            else if (number == -1) 
-            { 
-                return -1;
             }
             else
             {
-                return number * recFactorial(number - 1);
+                Console.WriteLine("Не число");
             }
         }
 
         /// <summary>
-        /// К 5 заданию
-        /// Считает НОД 2 введённых натуральных чисел 
+        /// Структура Дед.
         /// </summary>
-        /// <returns>Число типа int</returns>
-        static int NOD(int alfa, int beta)
-        //К 5 заданию
+        public struct Ded
         {
-            int min = Math.Min(alfa, beta);
-            alfa = Math.Max(alfa, beta);
-            beta = min;
-            while (alfa % beta != 0)
+            public string name;
+            public int countBruises;
+            public string[] phrases;
+            public Level level;
+
+            /// <summary>
+            /// Возвращает количество совпадений в переданных массивах строк
+            /// </summary>
+            /// <returns> Строка string </returns>
+            public string Mahach(string[] phrase, params string[] words)
             {
-                int dop = alfa % beta;
-                alfa = beta;
-                beta = dop;
+                foreach (string word in words)
+                {
+                    if (Array.IndexOf(phrase, word.ToLower()) != -1)
+                    {
+                        countBruises++;
+                    }
+                }
+                return $"Количество синяков после махача = {countBruises}";
             }
-            return beta;
+
+            /// <summary>
+            /// Вывод деда
+            /// </summary>
+            /// <returns> - </returns>
+            public void Print()
+            {
+                Console.WriteLine($"Имя деда: {name}");
+                Console.WriteLine($"Уровень ворчливости деда: {level}");
+                Console.WriteLine($"Синяки: {countBruises}");
+            }
         }
 
-        /// <summary>
-        /// К 5 заданию
-        /// Считает НОД 3 введённых натуральных чисел 
-        /// </summary>
-        /// <returns>Число типа int</returns>
-        static int NOD(int alfa, int beta, int gamma)
-        //К 5 заданию
-        {
-            int min = Math.Min(alfa, beta);
-            alfa = Math.Max(alfa, beta);
-            beta = min;
-            while (alfa % beta != 0)
-            {
-                int dop = alfa % beta;
-                alfa = beta;
-                beta = dop;
-            }
-            min = Math.Min(beta, gamma);
-            gamma = Math.Max(gamma, beta);
-            beta = min;
-            while (gamma % beta != 0)
-            {
-                int dop = gamma % beta;
-                gamma = beta;
-                beta = dop;
-            }
-            return beta;
-        }
-        
-        /// <summary>
-        /// К 6 заданию
-        /// Считает число ряда Фибоначчи по его номеру
-        /// </summary>
-        /// <returns>Число типа int</returns>
-        static int Fibb(int number)
-        //К 6 заданию
-        {
-            if (number == 0 || number == 1)
-            {
-                return 1;
-            }
-            else
-            {
-                return Fibb(number - 1) + Fibb(number - 2);
-            }
-        }
+        public enum Level //4
+        { слабый, средний, сильный, маразм, трёхэтажный }
     }
 }
