@@ -77,7 +77,7 @@ namespace Tumakov4
         /// <returns> - </returns>
         static void Task2()
         {
-            Console.WriteLine("\n2 задание\n");
+            Console.WriteLine("\n\n2 задание\n");
 
             double[] array = EnterArray();
 
@@ -100,7 +100,7 @@ namespace Tumakov4
         /// <returns> - </returns>
         static void Task3()
         {
-            Console.WriteLine("3 задание\n");
+            Console.WriteLine("\n3 задание\n");
 
             Console.WriteLine("Консоль ваша. Вводите числа со спокойной душой.\nДля выхода введите exit или закрыть");
             string input;
@@ -129,7 +129,7 @@ namespace Tumakov4
         /// <returns> - </returns>
         static void Task4()
         {
-            Console.WriteLine("4 задание\n");
+            Console.WriteLine("\n4 задание\n");
 
             Ded ded1 = new Ded();
             ded1.name = "Игаарь";
